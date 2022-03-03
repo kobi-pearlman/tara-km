@@ -1,0 +1,18 @@
+.selected-filter-item {
+  background-color: rgb(146, 145, 145);
+  //   color: white;
+  border-radius: 5px;
+  margin: auto 5px;
+  padding: 5px;
+  position: relative;
+
+  .remove-btn {
+    position: absolute;
+    // margin-left: 5px;
+    top: 0;
+    color: white;
+  }
+  .filter-value {
+    margin-right: 15px;
+  }
+}

@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import MainPage from "./pages/MainPage";
+import { getFiltersList } from "./redux/filters-options/filtersActions";
+import { getInitailMembers } from "./redux/kneset-members/membersActions";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getInitailMembers());
+    dispatch(getFiltersList());
+    const check = async () => {
+      const res = await fetch("https://knesset-rest-api.herokuapp.com/members");
+      console.log(await res.json());
+      const filterRes = await fetch(
+        "https://knesset-rest-api.herokuapp.com/filters"
+      );
+      console.log(await filterRes.json());
+    };
+    check();
+  }, [dispatch]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainPage />
     </div>
   );
-}
+};
 
 export default App;
